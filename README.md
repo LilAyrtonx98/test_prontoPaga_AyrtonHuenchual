@@ -90,14 +90,18 @@ POST http://localhost:3000/stripe/checkout, con este body
 Retornara una URL en donde se realiza el pago 
 
 Confirmar o rechazar cita (médico)
+(Antes de debe haber inicado sesión como médico y obtener el token)
 PUT http://localhost:3000/citas/{id}/confirmar
 Ṕara rechar una cita
 PUT http://localhost:3000/citas/{id}/rechazar
 
-
 Ver citas del día (médico)
+para listar las citas del médico (Antes se debe hacer iniciado sesión como médico)
+GET http://localhost:3000/citas/hoy
 
 Ver agenda del paciente
+(Antes se necesita haber iniciado sesión como paciente)
+GET http://localhost:3000/citas/mis-citas
 
 Validaciones de horario y duplicidad
 
