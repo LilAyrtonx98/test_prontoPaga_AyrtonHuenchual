@@ -1,9 +1,9 @@
 -- Insertar usuarios (médicos y pacientes)
 INSERT INTO usuarios (nombre, email, password, rol) VALUES
-('Dr. Pedro Gómez', 'pedro@medico.cl', 'hashedpassword1', 'medico'),
-('Dra. Laura Ruiz', 'laura@medico.cl', 'hashedpassword2', 'medico'),
-('Camila Torres', 'camila@paciente.cl', 'hashedpassword3', 'paciente'),
-('Javier Morales', 'javier@paciente.cl', 'hashedpassword4', 'paciente');
+('Dr. Pedro Gómez', 'pedro@medico.cl', '$2b$10$PFFYTK8rKH/.E2mEZSiEGO/Tv5Wlogq65uPuC4LDIEh9SpJGgL.jy', 'medico'),
+('Dra. Laura Ruiz', 'laura@medico.cl', '$2b$10$PFFYTK8rKH/.E2mEZSiEGO/Tv5Wlogq65uPuC4LDIEh9SpJGgL.jy', 'medico'),
+('Camila Torres', 'camila@paciente.cl', '$2b$10$RrHFFQU3I8MPzAn42qjwd.XgGMiwcK09k6YktwKsO.7REjI9MYFsy', 'paciente'),
+('Javier Morales', 'javier@paciente.cl', '$2b$10$RrHFFQU3I8MPzAn42qjwd.XgGMiwcK09k6YktwKsO.7REjI9MYFsy', 'paciente');
 
 -- Insertar citas (fecha actual y horarios válidos)
 INSERT INTO citas (paciente_id, medico_id, fecha, hora, estado) VALUES
