@@ -2,7 +2,8 @@ const db = require('../config/db');
 const bcrypt = require('bcrypt');
 const { generarToken } = require('../auth/jwt');
 const Usuario = require('../models/usuario');
-
+//Función que obtiene el usuario de la plataforma para ver si existe o no y si
+//sus contraseñas son correctas o no
 async function loginUsuario({ email, password }) {
   const result = await db.query('SELECT * FROM usuarios WHERE email = $1', [email]);
   if (result.rows.length === 0) {
@@ -17,7 +18,7 @@ async function loginUsuario({ email, password }) {
 
   const usuario = new Usuario(userDB);
   const token = generarToken(usuario);
-
+  //Retorna el usuario con sus respectivos datos
   return {
     token,
     usuario: {

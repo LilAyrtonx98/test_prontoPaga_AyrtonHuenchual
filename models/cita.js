@@ -1,3 +1,4 @@
+//Clase que permite crear un objeto Cita
 class Cita {
     constructor({ id, paciente_id, medico_id, fecha, hora, estado }) {
       this.id = id;

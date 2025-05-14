@@ -1,12 +1,12 @@
-const { registrarPago } = require('../services/pagoService');
-
-async function pagar(req, res) {
-  try {
-    const pago = await registrarPago(req.body, req.usuario);
-    res.json({ mensaje: 'Pago registrado correctamente', pago });
-  } catch (error) {
-    res.status(error.status || 400).json({ mensaje: error.message });
+//Clase que permite crear un objeto Pago
+class Pago {
+  constructor({ id, cita_id, estado_pago, fecha_pago }) {
+    this.id = id;
+    this.cita_id = cita_id;
+    this.estado_pago = estado_pago;
+    this.fecha_pago = fecha_pago;
   }
 }
 
-module.exports = { pagar };
+module.exports = Pago;
+

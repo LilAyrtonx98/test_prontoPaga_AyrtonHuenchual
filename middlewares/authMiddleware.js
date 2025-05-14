@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.JWT_SECRET;
-
+//Función que permite verificar que el token de la persona este correctamente ademas de su rol
 function verificarToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   if (!authHeader) {
@@ -14,22 +14,22 @@ function verificarToken(req, res, next) {
 
   try {
     const payload = jwt.verify(token, SECRET);
-    req.user = payload; // ← ahora tendrás { id, email, rol } disponible
+    req.usuario = payload; // ← ahora tendrás { id, email, rol } disponible
     next();
   } catch (err) {
     return res.status(403).json({ mensaje: 'Token inválido o expirado' });
   }
 }
-
+//Funcion que verifica que el rol sea del paciente
 function soloPacientes(req, res, next) {
-  if (req.user.rol !== 'paciente') {
+  if (req.usuario.rol !== 'paciente') {
     return res.status(403).json({ mensaje: 'Acceso permitido solo a pacientes' });
   }
   next();
 }
-
+//Funcion que verifica que el rol sea del medico
 function soloMedicos(req, res, next) {
-  if (req.user.rol !== 'medico') {
+  if (req.usuario.rol !== 'medico') {
     return res.status(403).json({ mensaje: 'Acceso permitido solo a médicos' });
   }
   next();

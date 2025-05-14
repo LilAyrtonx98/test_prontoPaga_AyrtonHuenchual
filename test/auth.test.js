@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../index');
-
+//Test de autentificación correcta de un usuario
 describe('🔐 Autenticación', () => {
   it('Debe iniciar sesión correctamente con credenciales válidas', async () => {
     const res = await request(app)

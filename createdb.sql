@@ -1,5 +1,5 @@
 -- Crear base de datos
--- CREATE DATABASE prontopaga; 
+CREATE DATABASE prontopaga; 
 
 -- Seleccionar base de datos (esto lo haces fuera del script si estás en psql)
 -- \c prontopaga;

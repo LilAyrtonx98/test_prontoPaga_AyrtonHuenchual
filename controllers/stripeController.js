@@ -2,7 +2,7 @@ const {
     crearSesionCheckout,
     registrarPagoExitoso
   } = require('../services/stripeService');
-  
+  //Función que permite iniciar el proceso de pago con el sandbox
   async function crearCheckout(req, res) {
     try {
       const { url } = await crearSesionCheckout(req.body);
@@ -12,7 +12,7 @@ const {
       res.status(500).json({ mensaje: 'Error al iniciar sesión de pago' });
     }
   }
-  
+  //Función que registra el pago si se realiza o no correctamente
   async function registrarPago(req, res) {
     try {
       await registrarPagoExitoso(req.query.cita_id);

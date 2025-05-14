@@ -26,7 +26,7 @@ Jest (para pruebas unitarias)
 
 Clona este repositorio:
 
-git clone https://github.com/tu-usuario/prontopaga.git
+git clone https://github.com/LilAyrtonx98/test_prontoPaga_AyrtonHuenchual.git
 cd prontopaga
 
 Instala las dependencias:
@@ -63,13 +63,37 @@ npm test
 
 📅 Funcionalidades principales
 
+En postman o Insomnia, o el que utilizen:
+
 Registro e inicio de sesión (JWT)
+Ejemplo iniciar sesión:POST http://localhost:3000/auth/login
+Body: {
+  "email": "camila@paciente.cl",
+  "password": "123456"
+}
 
-Solicitar cita médica
-
+Solicitar cita médica:
+Para hacerlo se debe haber iniciado sesión con el paciente y en Auth -> Token, pegar el token correspondiente del usuario iniciado en esta ruta:
+POST http://localhost:3000/citas
+con el Body: {
+  "fecha": "2025-05-14",
+  "hora": "10:30",
+  "medico_id": 2
+}
 Pagar cita (manual o vía Stripe Checkout sandbox)
+para pagar una cita mediante la pasarela de pago usar esta URL
+POST http://localhost:3000/stripe/checkout, con este body
+{
+  "cita_id": {id}, (o el id de la cita correspondiente)
+  "descripcion": "Consulta médica general"
+}
+Retornara una URL en donde se realiza el pago 
 
 Confirmar o rechazar cita (médico)
+PUT http://localhost:3000/citas/{id}/confirmar
+Ṕara rechar una cita
+PUT http://localhost:3000/citas/{id}/rechazar
+
 
 Ver citas del día (médico)
 

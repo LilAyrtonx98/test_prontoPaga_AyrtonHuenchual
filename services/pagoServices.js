@@ -1,5 +1,5 @@
 const db = require('../config/db');
-
+//Funcion que permite registrar un pago con las validaciones respectivas
 async function registrarPago(data, usuario) {
   const { cita_id } = data;
 

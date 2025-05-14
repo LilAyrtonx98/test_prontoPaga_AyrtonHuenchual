@@ -4,7 +4,7 @@ const db = require('../config/db');
 let tokenMedico;
 let tokenPaciente;
 let citaIdConfirmable;
-
+//Test respectivos de todas las funcionalidades del médico
 beforeAll(async () => {
   // Login como médico
   const resMedico = await request(app).post('/auth/login').send({
@@ -30,7 +30,7 @@ beforeAll(async () => {
       medico_id: 2
     });
 
-  console.log('🧪 CREACIÓN CITA:', resCita.body);
+  console.log('CREACIÓN CITA:', resCita.body);
 
   citaIdConfirmable = resCita.body?.cita?.id;
 
@@ -40,8 +40,8 @@ beforeAll(async () => {
   await db.query('UPDATE citas SET estado = $1 WHERE id = $2', ['pagada', citaIdConfirmable]);
 });
 
-
-describe('✅ Confirmar cita (como médico)', () => {
+//para confirmar la cita
+describe('Confirmar cita (como médico)', () => {
   it('Debe confirmar una cita pagada correctamente', async () => {
     const res = await request(app)
       .put(`/citas/${citaIdConfirmable}/confirmar`)
@@ -51,7 +51,8 @@ describe('✅ Confirmar cita (como médico)', () => {
     expect(res.body.mensaje).toMatch(/confirmada/i);
   });
 });
-describe('📅 Citas del día (médico)', () => {
+//Listar las citas del médico
+describe('Citas del día (médico)', () => {
     it('Debe devolver las citas confirmadas de hoy', async () => {
       const res = await request(app)
         .get('/citas/hoy')

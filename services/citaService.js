@@ -1,17 +1,17 @@
 const db = require('../config/db');
-
+//Función que valida que la hora de la cita sea en los rangos validos
 function esHorarioValido(hora) {
   const [h] = hora.split(':').map(Number);
   return (h >= 7 && h < 12) || (h >= 14 && h < 18);
 }
-
+//Función que valida todos los requisitos para crear una cita
 async function crearCita(data, usuario) {
   const { fecha, hora, medico_id } = data;
-
+  //Solo pueden ser pacientes
   if (usuario.rol !== 'paciente') {
     throw { status: 403, message: 'Solo pacientes pueden pedir citas' };
   }
-
+  //Solo puede ser en horarios validos
   if (!esHorarioValido(hora)) {
     throw { status: 400, message: 'Horario no permitido' };
   }
@@ -32,7 +32,7 @@ async function crearCita(data, usuario) {
 
   return result.rows[0];
 }
-
+//Funcion que permite validar para poder confirmar una cita, en base a su estado
 async function confirmarCita(id, usuario) {
   if (usuario.rol !== 'medico') {
     throw { status: 403, message: 'Solo médicos pueden confirmar citas' };
@@ -51,7 +51,7 @@ async function confirmarCita(id, usuario) {
 
   await db.query('UPDATE citas SET estado = $1 WHERE id = $2', ['confirmada', id]);
 }
-
+//Funcion que obtiene todas las citas del día del médico
 async function listarCitasDelDia(usuario) {
   if (usuario.rol !== 'medico') {
     throw { status: 403, message: 'Solo médicos pueden ver sus citas' };
@@ -65,6 +65,8 @@ async function listarCitasDelDia(usuario) {
 
   return result.rows;
 }
+//Función que permite que un médico rechaze una cita y haciendo todas las validaciones
+//correspondientes
 async function rechazarCita(id, usuario) {
     if (usuario.rol !== 'medico') {
       throw { status: 403, message: 'Solo médicos pueden rechazar citas' };

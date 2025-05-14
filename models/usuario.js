@@ -1,3 +1,4 @@
+//Clase que permite crear un objeto Usuario
 class Usuario {
     constructor({ id, nombre, email, password, rol }) {
       this.id = id;

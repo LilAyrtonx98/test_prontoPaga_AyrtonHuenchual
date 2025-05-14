@@ -1,5 +1,5 @@
 const { registrarPago } = require('../services/pagoServices');
-
+//Función que permite pagar una cita
 async function pagar(req, res) {
   try {
     const pago = await registrarPago(req.body, req.usuario);

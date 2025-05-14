@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../index');
 
 let tokenPaciente;
-
+//Test de creación de una cita, confirmación de esta
 beforeAll(async () => {
     const res = await request(app).post('/auth/login').send({
       email: 'camila@paciente.cl',
@@ -13,7 +13,7 @@ beforeAll(async () => {
   });
   
 
-describe('📅 Citas', () => {
+describe('Citas', () => {
   it('Debe crear una cita válida en horario permitido', async () => {
     const res = await request(app)
       .post('/citas')
